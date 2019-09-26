@@ -1,0 +1,131 @@
+
+<?php
+if(isset($_POST['submit'])){
+		$uname = $_POST['username'];
+		$gender = $_POST['gender'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$c_pass = $_POST['c_password'];
+		
+		if($uname==""){
+			$uname_error = "** Username Invalid or Empty.";		
+		}
+		else if(strlen($uname)<=2 || strlen($uname)>20){$uname_error = "** Username must be between 2 and 20 Characters.";
+		}
+		else if(is_numeric($uname)){
+			$uname_error = "Username Must be character.";		
+		}
+		
+		if($gender==""){
+			$gen_error = "** Please Select your Gender.";
+		}
+		else {
+			$gen_error = "";
+		}
+		
+		if($email==""){
+			$email_error = "** Email Field is empty.";
+		}
+		else if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email)){
+			$email_error = 'Invalid email';
+		}
+		
+		if($password==""){
+			$pass_error = "** Password can not be blank.";
+		}
+		else if(strlen($password)<5 || strlen($password)>10 ){
+			$pass_error = "Password length must be between 5 and 20 characters";		
+		}
+		
+		if($c_pass==""){
+			$cpass_error = "** Confirm Password field can not be blank.";
+		}
+		else if($c_pass!==$password){
+			$cpass_error = "**Confirm Password does not Matched.";
+		}
+?>
+
+
+
+<html>
+<head>
+<style>
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width:600px;
+  margin:0px auto;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=radio]{
+  width:30%;
+  
+}
+
+
+</style>
+<title></title>
+</head>
+<body>
+	<div class="container">
+		<form action="" >
+		
+			<label align="left">First Name</label><br>
+			<input type="text" name="first name" value="">
+			<span style="color:red"><?php if(isset($uname_error)){echo $uname_error;} ?></span>
+			
+			<br>
+			
+			<label align="left">Last Name</label><br>
+			<input type="text" name="last name" value="">
+			<span style="color:red"><?php if(isset($gen_error)){echo $ _error;} ?></span>
+			<br>
+			
+			<label align="left">Gender</label><br>
+			<label>Male</label>
+			<input type="radio" name="gender">
+			<label>Female</label>
+			<input type="radio"name="gender">
+					
+			<br>
+			
+			<label align="left">E-mail</label><br>
+			<input type="text" value="">
+			<br>
+			
+			<label align="left">Password</label><br>
+			<input type="text"name="pasword">
+		
+			<br>
+			
+			<label align="left">Confirm Password</label><br>
+			<input type="text"name="confrm pasword">
+		
+			<br>
+			<input type="submit" value="submit">
+			<br>
+		
+		</form>
+	</div>
+
+
+</body>
